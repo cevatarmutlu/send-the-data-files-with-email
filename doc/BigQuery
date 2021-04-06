@@ -1,0 +1,28 @@
+Google tarafından geliştirilmiştir.
+2012 yılında başlatılmıştır.
+Kendisi bir Cloud Service(Bulut Bilişim) hizmetlerinden biridir.
+Ne yapar? Büyük veri üzerindeki sorgu işlemlerinin Google altyapısı kullanılarak hızlı bir şekilde yapılabilmesine olanak sağlar.
+
+Dremel denen paralel sorgu servisini kullanır. Bu sorgu servisini google geliştirmiştir.
+
+Dremel, MapReduce gibi dağıtık mimari üzerinde çok büyük verilerin kolayca analiz edibilmesini sağlar.
+
+Dremel Google BigQuery' nin tercih edilme sebeplerinden biridir.
+
+
+MapReduce' u da Google geliştirmiş. Dremel, MapReduce' e göre üç temel avantaj sağlar.
+
+Hız;
+	Dremel Record-Oriented(kolon bazlı) bir veri yapsına sahiptir. MapReduce ise Column-Oriented veri yapısına sahiptir.
+	
+	Büyük verileride analiz yapmak için performans artışı sağlar. 
+	
+	Satır bazlı bir tablodaki verilerin x1-x4' üncü kolonlarının analiz edilmesi gerekiyorsa kolon bazlı yapıda 1 milyon satırın hepsinin okunması gerekecektir. Dremel' la ise sadece gerekli kolonlar okunacaktır.
+
+	Dezavantajı ise diyelim ki 18. satırın değerlerini elde etmek istiyoruz. Bu satırın değerleri için birden fazla sorgu çekecektir.
+	
+	`Sonuç olarak sütun bazlı veri modelinin büyük veri okurken ve tüm sütunlar yerine belli başlı sütunlardaki veriye erişim yapılması gerektiği durumlarda tercih edilmesi performans artışı sağlayacaktır.`
+
+
+Kullanılabilirlik;
+	MapReduce uyumlu sistemlerde SQL formatında sorgu çekebilmek için Hive, Pig tarzı dillere ihtiyaç vardır. Dremel' da ise sorgu dili SQL' e yakındır. Bu sebeple sorgulama işlemlerinde mapreduce uyumlu yapılara göre daha hızlıdır.

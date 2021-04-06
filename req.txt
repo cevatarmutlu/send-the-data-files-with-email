@@ -1,0 +1,4 @@
+python-dev-tools
+psycopg2
+pandas
+openpyxl

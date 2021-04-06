@@ -1,0 +1,80 @@
+#### Installed Modules ####
+import pandas as pd
+import pandas.io.sql as sqlio
+import psycopg2 as py
+
+# Dependencies for installation psycopg2
+# 1 pip install python-dev-tools
+# 2 sudo apt-get install libpq-dev
+# 3 pip install psycopg2
+
+#### Project Scripts ####
+from db.IDB import IDB
+
+class MySQL(IDB):
+	"""
+		This class connect to MySQL.
+	"""
+
+	def connect(self):
+		"""
+			Connect to MySQL. MySQL is built-in.
+
+			Returns:
+				None	
+		"""
+
+		try:
+			self.conn = py.connect(
+				host="localhost", 
+				port=5432, 
+				dbname="postgres", 
+				user="postgres", 
+				password="123"
+			)
+		except Exception as e:
+			print(e)
+			exit(1)
+		
+		print(f"{self.__class__.__name__} DB connection is successful")
+
+	def fetch(self, query: str):
+		"""
+			Fetch data from DB and convert to pandas DataFrame.
+
+            Args:
+                query: The SQL query that fetch the data.
+
+            Returns:
+                df (pandas.DataFrame): Constains the data.
+		"""
+				
+		df = sqlio.read_sql_query(query, self.conn)
+		
+		return df
+	
+	def disconnect(self):
+		"""
+            Disonnect to DB.
+
+            Returns:
+                None
+        """
+
+		try:
+			self.conn.close()
+		except Exception as e:
+			print(e)
+			exit(1)
+		print(f"{self.__class__.__name__} DB connection is closed")
+
+
+if __name__ == "__main__":
+	mysql = MySQL()
+	mysql.connect()
+	print(mysql.fetch("SELECT * FROM client"))
+	mysql.disconnect()
+
+
+
+

@@ -1,0 +1,19 @@
+#### Introduction ####
+This file contains things that i did not know during the project process.
+
+#### DWH ####
+Data WareHouse(Veri Ambarı): En temel hali ile verilerin depolandığı katman, bu katmanı besleyen başka bir katman ve
+depodaki verileri kullanarak raporlama, analiz ve veri madenciliği yapan bir katman(sunum katmanı). Besleme katmanı ile
+depo katmanı arasında veri temizleme katmanı eklenebilir. ETL ya da ELT depo ile sunum katmanı arasındadır.
+https://www.gtech.com.tr/veri-ambari-data-warehouse-ve-veri-ambari-mimarisi-nedir/
+
+#### BigQuery ####
+Google tarafından geliştirilen ve çekirdeğinde Dremel isimli bir yapının olduğu veri analizi yapan bir araçtır.
+MapReduce' den farklı, Dremel Column-Oriented' dır. MapReduce ise Record-Oriented' dır.
+https://www.omeroner.com/google-big-query-nedir/
+
+#### SMTP ####
+Simple Mail Transfer Protocol: Mail gönderme protokolü.
+IMAP, POP3 Mail alma protokolleri.
+https://www.hosting.com.tr/bilgi-bankasi/smtp-nedir/
+Bir tane örnek var: sendMail.py

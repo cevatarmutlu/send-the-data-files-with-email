@@ -1,0 +1,5 @@
+Veri tabanı sınıflarının bulunduğu yapı.
+
+This folder contains db classes.
+
+Initially connect information is in-code.
