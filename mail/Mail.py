@@ -111,12 +111,3 @@ class Mail:
         self.service.quit()
         remove(self.file_path)
         print("Email sending is successful.")
-
-
-if __name__ == "__main__":
-    Mail() \
-        .setServise(MailEnum.Hotmail) \
-        .setAuthenticatin(**{'user': 'cevat1803_korkusuz@hotmail.com', 'password': '11411935'}) \
-        .setTo('cevatarmutlu@outlook.com') \
-        .setMessage(subject='Merhaba Dünya', message='İyiyim la') \
-        .send()

@@ -74,7 +74,3 @@ if __name__ == "__main__":
 	mysql.connect()
 	print(mysql.fetch("SELECT * FROM client"))
 	mysql.disconnect()
-
-
-
-

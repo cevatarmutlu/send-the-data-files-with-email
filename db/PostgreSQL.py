@@ -69,10 +69,8 @@ class PostgreSQL(IDB):
 			exit(1)
 		print(f"{self.__class__.__name__} DB connection is closed")
 
-
 if __name__ == "__main__":
 	postgre = PostgreSQL()
 	postgre.connect()
 	print(postgre.fetch("SELECT * FROM client"))
 	postgre.disconnect()
-
