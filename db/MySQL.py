@@ -36,7 +36,7 @@ class MySQL(IDB):
 			print(e)
 			exit(1)
 		
-		print(f"{self.__class__.__name__} DB connection is successful")
+		print(f"{self.__class__.__name__} DB connection is successful.")
 
 	def fetch(self, query: str):
 		"""
@@ -48,8 +48,12 @@ class MySQL(IDB):
             Returns:
                 df (pandas.DataFrame): Constains the data.
 		"""
+		
+		if type(query) != str:
+			raise TypeError("MySQL Query argument must be string.")
 				
 		df = sqlio.read_sql_query(query, self.conn)
+		print("Data Fetched successful")
 		
 		return df
 	

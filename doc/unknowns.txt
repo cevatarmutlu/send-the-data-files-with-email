@@ -17,3 +17,8 @@ Simple Mail Transfer Protocol: Mail gönderme protokolü.
 IMAP, POP3 Mail alma protokolleri.
 https://www.hosting.com.tr/bilgi-bankasi/smtp-nedir/
 Bir tane örnek var: sendMail.py
+
+#### unittest ####
+Unittest modülü test yapma sırasını alfabetik olarak yapar. Bu yüzden MySQL.py dosyasının
+testlerini step1_testConnect şeklinde yaptım.
+https://stackoverflow.com/questions/5387299/python-unittest-testcase-execution-order
