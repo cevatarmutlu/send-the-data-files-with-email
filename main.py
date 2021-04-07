@@ -14,7 +14,7 @@ if __name__ == "__main__":
     try:
         #### Assign this variables ####
         db_type = DBEnum.MySQL
-        data_query = 'Merhaba Dünya'
+        data_query = 'SELECT * FROM client'
 
         attach_file_name = 'Client'
         attach_file_type = FileTypeEnum.Excel

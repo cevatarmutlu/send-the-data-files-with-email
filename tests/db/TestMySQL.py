@@ -1,6 +1,7 @@
 # In-Python module
 import unittest
 
+#### Installed Modules ####
 import pandas
 
 #### Project Scripts ####
@@ -40,7 +41,3 @@ class TestMySQL(unittest.TestCase):
         print('\n**Start MySQL disconnect() test**\n')  
         self.assertEqual(TestMySQL.mysql.disconnect(), None)
         print('\n**End MySQL disconnect() test**\n')  
-
-if __name__ == "__main__":
-    unittest.main()
-    

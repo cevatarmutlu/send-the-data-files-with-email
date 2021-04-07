@@ -22,6 +22,17 @@ class Excel(IWriter):
                 None
         """
 
+        if type(filename) != str or type(filename) != str:
+            raise TypeError(f'filename and sheet must be string not {type(filename).__name__}')
+        
+        filename = filename.strip()
+        sheet = sheet.strip()
+
+        if filename == '' or sheet == '':
+            raise TypeError('filename and sheet is not empty.')
+        if filename.find('/') != -1 or sheet.find('/') != -1:
+            raise TypeError('filename is not include `/` character ')
+
         writer = pandas.ExcelWriter(f'{filename}.xlsx',options={'remove_timezone': True})
         self.df.to_excel(writer, sheet, index=False)
         writer.save()

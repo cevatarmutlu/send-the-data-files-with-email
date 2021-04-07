@@ -9,7 +9,6 @@ class IWriter:
         Interface of file types
     """
 
-    @abstractmethod
     def setDF(self, df: DataFrame):
         """
             Sets the data that will write.
@@ -20,6 +19,9 @@ class IWriter:
             Returns:
                 self: The class instance
         """
+
+        if not isinstance(df, DataFrame):
+            raise TypeError('df is not pandas.DataFrame')
 
         self.df = df
 

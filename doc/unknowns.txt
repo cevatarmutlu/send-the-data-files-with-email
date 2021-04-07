@@ -20,5 +20,5 @@ Bir tane örnek var: sendMail.py
 
 #### unittest ####
 Unittest modülü test yapma sırasını alfabetik olarak yapar. Bu yüzden MySQL.py dosyasının
-testlerini step1_testConnect şeklinde yaptım.
+testlerini test1Connect şeklinde yaptım.
 https://stackoverflow.com/questions/5387299/python-unittest-testcase-execution-order

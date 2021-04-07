@@ -21,6 +21,17 @@ class CSV(IWriter):
             Returns:
                 None
         """
+
+        if type(filename) != str:
+            raise TypeError(f'filename must be string not {type(filename).__name__}')
+        
+        filename = filename.strip()
+
+        if filename == '':
+            raise TypeError('filename is not empty.')
+        if filename.find('/') != -1:
+            raise TypeError('filename is not include `/` character ')
+
         self.df.to_csv(f'{filename}.csv', index=False)
 
 if __name__ == '__main__':

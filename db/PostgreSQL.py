@@ -49,8 +49,12 @@ class PostgreSQL(IDB):
             Returns:
                 df (pandas.DataFrame): Constains the data.
 		"""
+
+		if type(query) != str:
+			raise TypeError("PostgreSQL Query argument must be string.")
 		
 		df = sqlio.read_sql_query(query, self.conn)
+		print("Data Fetched successful")
 		
 		return df
 	
