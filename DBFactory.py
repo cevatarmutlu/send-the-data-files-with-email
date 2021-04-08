@@ -25,6 +25,12 @@ class DBFactory:
                         return MySQL()
         """
 
+        if not isinstance(dBType, DBEnum):
+            raise TypeError('dbType must be DBEnum.')
+                
+        if dBType not in DBEnum:
+            raise TypeError('dbType must be in DBEnum')
+
         if (dBType == DBEnum.PostgreSQL):
             return PostgreSQL()
         elif (dBType == DBEnum.MySQL):
