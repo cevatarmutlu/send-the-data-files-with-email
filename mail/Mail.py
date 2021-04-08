@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 from os import remove
+import re
 
 #### Project Scripts ####
 from mail.MailEnum import MailEnum
@@ -24,6 +25,12 @@ class Mail:
                 self: Created instance of the class.
         """
 
+        if not isinstance(service, dict):
+            raise TypeError('service argument must be dict.')
+        if 'host' not in service or 'port' not in service:
+            raise TypeError('service generated host and port variables')
+            print('Merhaba')
+
         self.service = smtplib.SMTP(**service)
         self.service.ehlo()
         self.service.starttls()
@@ -41,6 +48,13 @@ class Mail:
             self: Created instance of the class.
         """
 
+        valid_mail_regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
+
+        if not isinstance(user, str) or not isinstance(password, str):
+            raise TypeError('user and password must be string.')
+        if not (re.search(valid_mail_regex, user)):
+            raise TypeError('user is not mail.')
+
         self.service.login(user=user, password=password)
         self.from_ = user
 
@@ -56,6 +70,15 @@ class Mail:
             self: Created instance of the class.
         """
 
+        if not isinstance(to, str):
+            raise TypeError('to must be str')
+        
+        to = to.strip()
+
+        if to == '':
+            raise TypeError('to must not be empty')
+        
+
         self.to = to
 
         return self
@@ -70,6 +93,15 @@ class Mail:
         Returns:
             self: Created instance of the class.
         """
+
+        if not isinstance(subject, str) or not isinstance(message, str):
+            raise TypeError('subject and message must be string.')
+        
+        subject = subject.strip()
+        message = message.strip()
+
+        if subject == '':
+            raise TypeError('subject must not be empty')
 
         self.msg = MIMEMultipart('alternative')
         self.msg['Subject'] = subject
@@ -90,6 +122,21 @@ class Mail:
         Returns:
             self: Created instance of the class.
         """
+
+        if not isinstance(file_type, FileTypeEnum):
+            raise TypeError('file_type must be FileTypeEnum.')
+        
+        if not isinstance(file_name, str):
+            raise TypeError('file_name must be string.')
+
+        file_name = file_name.strip()
+
+        if file_name == '':
+            raise TypeError('file_name must not be empty.')
+        
+        if file_name.find('/') != -1:
+            raise TypeError('file_name is not constains /')
+
         self.file_path = f'{file_name}.{file_type.value}'
         self.part = MIMEBase('application', "octet-stream")
         self.part.set_payload(open(f"{self.file_path}", "rb").read())
