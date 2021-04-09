@@ -17,11 +17,6 @@ class TestDBFactory(unittest.TestCase):
             IDB
         )
 
-        self.assertIsInstance(
-            DBFactory.getDB(DBEnum.MySQL),
-            IDB
-        )
-
         #### Invalid ####
         with self.assertRaises(TypeError):
             DBFactory.getDB(dBType=5)

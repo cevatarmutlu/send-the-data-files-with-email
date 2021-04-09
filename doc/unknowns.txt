@@ -22,3 +22,10 @@ Bir tane örnek var: sendMail.py
 Unittest modülü test yapma sırasını alfabetik olarak yapar. Bu yüzden MySQL.py dosyasının
 testlerini test1Connect şeklinde yaptım.
 https://stackoverflow.com/questions/5387299/python-unittest-testcase-execution-order
+
+#### Run python test scripts ####
+
+    Root project:
+        python3 -m unittest tests.TestDBFactory
+    
+    otherwise: ModuleNotFoundError

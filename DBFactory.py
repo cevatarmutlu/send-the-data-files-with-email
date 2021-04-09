@@ -7,32 +7,35 @@ from db.PostgreSQL import PostgreSQL
 class DBFactory:
     """
         Return specific database instance.
+
+        Examples:
+            DBFactory.getDB(DBEnum.MySQL)
     """
 
     @staticmethod
-    def getDB(dBType: str):
+    def getDB(dbType: DBEnum):
         """
-            Static function. Return specific database instance.
+            Return specific database instance.
 
             Args:
-                dBType: Database type.
+                dbType: Database type.
 
             Returns:
-                Db instance:
-                    if (dBType == DBEnum.PostgreSQL):
-                        return PostgreSQL()
-                    elif (dBType == DBEnum.MySQL):
-                        return MySQL()
+                IDB subclass: Your DB instance.
+            
+            Raises:
+                TypeError: if `dbType` is not instance of `DBEnum` raises `TypeError`.
+            
+
+                    
         """
 
-        if not isinstance(dBType, DBEnum):
-            raise TypeError('dbType must be DBEnum.')
+        if not isinstance(dbType, DBEnum):
+            raise TypeError('dbType must be DBEnum type.')
                 
-        if dBType not in DBEnum:
-            raise TypeError('dbType must be in DBEnum')
 
-        if (dBType == DBEnum.PostgreSQL):
+        if (dbType == DBEnum.PostgreSQL):
             return PostgreSQL()
-        elif (dBType == DBEnum.MySQL):
+        elif (dbType == DBEnum.MySQL):
             return MySQL()
 
