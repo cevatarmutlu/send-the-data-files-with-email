@@ -48,6 +48,9 @@ class PostgreSQL(IDB):
 
             Returns:
                 df (pandas.DataFrame): Constains the data.
+			
+			Raises:
+				TypeError: if `query` is not instance of `str` then raises `TypeError`.
 		"""
 
 		if type(query) != str:

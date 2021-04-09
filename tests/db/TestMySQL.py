@@ -32,7 +32,7 @@ class TestMySQL(unittest.TestCase):
 
         self.assertEqual(type(TestMySQL.mysql.fetch(query='SELECT * FROM client')), type(pandas.DataFrame()))
 
-        print('\n**End MySQL fetch() test**\n')   
+        print('\n**End MySQL fetch() test**\n')
 
 
     def test3Disconnect(self):
