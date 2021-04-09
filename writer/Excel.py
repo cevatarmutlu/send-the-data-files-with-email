@@ -24,7 +24,7 @@ class Excel(IWriter):
             Raises:
                 TypeError: if `filename` and `sheet` is not instance of `str` 
                     then raises `TypeError`.
-                ValueError: if filename and sheet is empty and include '/' 
+                ValueError: if `filename` and `sheet` is empty and include '/' 
                     then raises ValueError.
         """
 

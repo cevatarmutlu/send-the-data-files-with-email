@@ -14,7 +14,7 @@ from writer.FileTypeEnum import FileTypeEnum
 class Mail:
     """Sends e-mail."""
 
-    def setServise(self, service: dict):
+    def setServise(self, service: MailEnum):
         """
             The mail service used by the person who will send the mail.
 
@@ -23,37 +23,44 @@ class Mail:
 
             Returns: 
                 self: Created instance of the class.
+            
+            Raises:
+                TypeError: if `service` is not instance of `MailEnum` 
+                then raises `TypeError`.
         """
 
-        if not isinstance(service, dict):
-            raise TypeError('service argument must be dict.')
-        if 'host' not in service or 'port' not in service:
-            raise TypeError('service generated host and port variables')
-            print('Merhaba')
+        if not isinstance(service, MailEnum):
+            raise TypeError('service argument must be MailEnum.')
 
-        self.service = smtplib.SMTP(**service)
+        self.service = smtplib.SMTP(**service.value)
         self.service.ehlo()
         self.service.starttls()
 
         return self
     
     def setAuthentication(self, user: str, password: str):
-        """Mail account information(email address and password) of the person who will send mail.
+        """
+            Mail account information(email address and password) of the person who will send mail.
 
-        Args:
-            user: Email address.
-            password: Password.
+            Args:
+                user: Email address.
+                password: Password.
 
-        Returns:
-            self: Created instance of the class.
+            Returns:
+                self: Created instance of the class.
+            
+            Raises:
+                TypeError: if `user` and `password` is not instance of `MailEnum` 
+                    then raises `TypeError`.
+                ValueError: if user is not email then raises ValueError.
         """
 
         valid_mail_regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
 
         if not isinstance(user, str) or not isinstance(password, str):
-            raise TypeError('user and password must be string.')
+            raise TypeError('user and password must be string')
         if not (re.search(valid_mail_regex, user)):
-            raise TypeError('user is not mail.')
+            raise ValueError('user is not mail.')
 
         self.service.login(user=user, password=password)
         self.from_ = user
@@ -61,22 +68,28 @@ class Mail:
         return self
     
     def setTo(self, to: str):
-        """The email of the person who will receive email.
+        """
+            The email of the person who will receive email.
         
-        Args:
-            to: Email address.
-        
-        Returns:
-            self: Created instance of the class.
+            Args:
+                to: Email address.
+            
+            Returns:
+                self: Created instance of the class.
+            
+            Raises:
+                TypeError: if `to` is not instance of `str` 
+                    then raises `TypeError`.
+                ValueError: if to is empty then raises ValueError.
         """
 
         if not isinstance(to, str):
-            raise TypeError('to must be str')
+            raise TypeError('to must be str.')
         
         to = to.strip()
 
         if to == '':
-            raise TypeError('to must not be empty')
+            raise ValueError('to must not be empty.')
         
 
         self.to = to
@@ -84,14 +97,20 @@ class Mail:
         return self
     
     def setMessage(self, subject: str, message: str):
-        """The message to send.
+        """
+            The message to send.
 
-        Args:
-            subject: The subject of email.
-            message: The message of email.
-        
-        Returns:
-            self: Created instance of the class.
+            Args:
+                subject: The subject of email.
+                message: The message of email. Must be empty.
+            
+            Returns:
+                self: Created instance of the class.
+            
+            Raises:
+                TypeError: if `subject` and `message` is not instance of `str` 
+                    then raises `TypeError`.
+                ValueError: if subject is empty then raises ValueError.
         """
 
         if not isinstance(subject, str) or not isinstance(message, str):
@@ -101,7 +120,7 @@ class Mail:
         message = message.strip()
 
         if subject == '':
-            raise TypeError('subject must not be empty')
+            raise ValueError('subject must not be empty')
 
         self.msg = MIMEMultipart('alternative')
         self.msg['Subject'] = subject
@@ -113,14 +132,21 @@ class Mail:
         return self
     
     def attach(self, file_type: FileTypeEnum, file_name: str = 'Data'):
-        """The file that attach to email.
+        """T
+            he file that attach to email.
 
-        Args:
-            file: The file name.
-            tyoe: The type of the file
-        
-        Returns:
-            self: Created instance of the class.
+            Args:
+                file: The file name.
+                tyoe: The type of the file
+            
+            Returns:
+                self: Created instance of the class.
+            
+            Raises:
+                TypeError: if `file_type` is not instance of `FileTypeEnum` or
+                    `file_name` is not instance of `str` then raises `TypeError`.
+                ValueError: if `file_name` is empty and include '/' 
+                    then raises ValueError.
         """
 
         if not isinstance(file_type, FileTypeEnum):
@@ -132,10 +158,10 @@ class Mail:
         file_name = file_name.strip()
 
         if file_name == '':
-            raise TypeError('file_name must not be empty.')
+            raise ValueError('file_name must not be empty.')
         
         if file_name.find('/') != -1:
-            raise TypeError('file_name is not constains /')
+            raise ValueError('file_name is not constains /')
 
         self.file_path = f'{file_name}.{file_type.value}'
         self.part = MIMEBase('application', "octet-stream")
@@ -147,11 +173,11 @@ class Mail:
         return self
     
     def send(self):
-        """Send the mail.
+        """
+            Send the mail.
         
-        Returns:
-            None
-
+            Returns:
+                None
         """
 
         self.service.sendmail(self.from_, self.to, self.msg.as_string())

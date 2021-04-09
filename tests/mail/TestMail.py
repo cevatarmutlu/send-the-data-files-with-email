@@ -16,6 +16,7 @@ class TestMail(unittest.TestCase):
 
         print('\n**Start Mail setService() test**\n')
 
+        #### Invalid ####
         with self.assertRaises(TypeError):
             TestMail.mail.setServise(service=5)
             TestMail.mail.setServise(service='')
@@ -23,11 +24,8 @@ class TestMail(unittest.TestCase):
             TestMail.mail.setServise(service=pandas.DataFrame([1, 2, 3]))
             TestMail.mail.setServise(service='Merhaba dünya')
 
-            TestMail.mail.setServise(service={'host': 'adsf', 'cort': 'ad'})
-            TestMail.mail.setServise(service={'most': 'adsf', 'port': 'ad'})
-            TestMail.mail.setServise(service={})
-            TestMail.mail.setServise(service={'host': 'adsf', 'port': 'ad', 'cort': 'asdf'})
 
+        #### Valid ####
         self.assertIsInstance(TestMail.mail.setServise(MailEnum.Hotmail), Mail)
 
         print('\n**End Mail setService() test**\n')
@@ -36,11 +34,16 @@ class TestMail(unittest.TestCase):
 
         print('\n**Start Mail setAuthentication() test**\n')
 
+        #### Invalid ####
         with self.assertRaises(TypeError):
             TestMail.mail.setAuthentication(user=5, password=5)
+            
+        with self.assertRaises(ValueError):
             TestMail.mail.setAuthentication(user='aaa', password='bbb')
             TestMail.mail.setAuthentication(user='', password='mahmut')
         
+
+        #### Valid ####
         self.assertIsInstance(
             TestMail.mail.setAuthentication(user='', password=''), 
             Mail
@@ -52,14 +55,19 @@ class TestMail(unittest.TestCase):
 
         print('\n**Start Mail setTo() test**\n')
 
+        #### Invalid ####
         with self.assertRaises(TypeError):
-            TestMail.mail.setAuthentication(to=5)
-            TestMail.mail.setAuthentication(to=[1, 2, 3])
-            TestMail.mail.setAuthentication(to={'a': 1, 'b': 2})
-            TestMail.mail.setAuthentication(to='')
+            TestMail.mail.setTo(to=5)
+            TestMail.mail.setTo(to=[1, 2, 3])
+            TestMail.mail.setTo(to={'a': 1, 'b': 2})
         
+        with self.assertRaises(ValueError):
+            TestMail.mail.setTo(to='')
+        
+
+        #### Valid ####
         self.assertIsInstance(
-            TestMail.mail.setTo(to=''),
+            TestMail.mail.setTo(to='blabla@blabla.com'),
             Mail
         )
 
@@ -69,10 +77,16 @@ class TestMail(unittest.TestCase):
 
         print('\n**Start Mail setMessage() test**\n')
 
+        #### Invalid ####
         with self.assertRaises(TypeError):
             TestMail.mail.setMessage(subject=5, message='')
+            TestMail.mail.setMessage(subject='', message=5)
+
+        with self.assertRaises(ValueError):
             TestMail.mail.setMessage(subject='', message='')
 
+
+        #### Valid ####
         self.assertIsInstance(
             TestMail.mail.setMessage(subject='Konu', message=''),
             Mail
@@ -90,14 +104,18 @@ class TestMail(unittest.TestCase):
 
         print('\n**Start Mail attach() test**\n')
 
+        #### Invalid ####
         with self.assertRaises(TypeError):
             TestMail.mail.attach(file_type='')
             TestMail.mail.attach(file_type=[1, 2, 3])
             TestMail.mail.attach(file_type=FileTypeEnum.Excel, file_name=5)
-            TestMail.mail.attach(file_type=FileTypeEnum.Excel, file_name='')
-            TestMail.mail.attach(file_type=FileTypeEnum.Excel, file_name='/')
             TestMail.mail.attach(file_type=FileTypeEnum.Excel, file_name=[1, 2, 3])
         
+        with self.assertRaises(ValueError):
+            TestMail.mail.attach(file_type=FileTypeEnum.Excel, file_name='')
+            TestMail.mail.attach(file_type=FileTypeEnum.Excel, file_name='/')
+        
+        #### Valid ####
         self.assertIsInstance(
             TestMail.mail.attach(file_type=FileTypeEnum.Excel, file_name='Data'),
             Mail
@@ -109,6 +127,7 @@ class TestMail(unittest.TestCase):
 
         print('\n**Start Mail send() test**\n')
 
+        #### Valid ####
         self.assertEqual(TestMail.mail.send(), None)
 
         print('\n**End Mail send() test**\n')
