@@ -14,19 +14,19 @@ if __name__ == "__main__":
     try:
         #### Assign this variables ####
         db_type = DBEnum.MySQL
-        data_query = 'SELECT * FROM client'
+        data_query = ''
 
-        attach_file_name = 'Client'
+        attach_file_name = ''
         attach_file_type = FileTypeEnum.Excel
         
         mail_service = MailEnum.Hotmail
         auth = {
-            'user': 'cevat1803_korkusuz@hotmail.com', 
+            'user': '', 
             'password': ''
         }
-        mailTo = 'cevatarmutlu@outlook.com'
-        mailSubject = 'Merhaba'
-        mailMessage = 'Deneme'
+        mailTo = ''
+        mailSubject = ''
+        mailMessage = ''
         
 
         #### Work Zone ####
