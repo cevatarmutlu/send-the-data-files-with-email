@@ -28,22 +28,29 @@ class TestExcel(unittest.TestCase):
 
         print('\n**Start IWriter generate() test**\n')
 
+        #### Invalid ####
         with self.assertRaises(TypeError):
-            TestExcel.excel.generate(filename='')
             TestExcel.excel.generate(filename=5)
             TestExcel.excel.generate(filename=[1, 2, 3, 4])
             TestExcel.excel.generate(filename=pandas.DataFrame([1, 2, 3]))
-            TestExcel.excel.generate(filename='/@^+%')
-            TestExcel.excel.generate(filename='     ')
 
-            TestExcel.excel.generate(sheet='')
             TestExcel.excel.generate(sheet=5)
             TestExcel.excel.generate(sheet=[1, 2, 3, 4])
             TestExcel.excel.generate(sheet=pandas.DataFrame([1, 2, 3]))
+
+
+        
+        with self.assertRaises(ValueError):
+            TestExcel.excel.generate(filename='')
+            TestExcel.excel.generate(filename='/@^+%')
+            TestExcel.excel.generate(filename='     ')
+            
+            TestExcel.excel.generate(sheet='')
             TestExcel.excel.generate(sheet='/@^+%')
             TestExcel.excel.generate(sheet='     ')
 
 
+        #### Valid ####
         self.assertEqual(TestExcel.excel.generate(), None)
         self.assertEqual(TestExcel.excel.generate(filename='Deneme'), None)
         self.assertEqual(TestExcel.excel.generate(filename='Data1', sheet='Sheet1'), None)

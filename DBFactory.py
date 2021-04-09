@@ -29,7 +29,7 @@ class DBFactory:
         """
 
         if not isinstance(dbType, DBEnum):
-            raise TypeError('dbType must be DBEnum type.')
+            raise TypeError(f'dbType must be DBEnum type, not {type(filename).__name__}')
                 
 
         if (dbType == DBEnum.PostgreSQL):

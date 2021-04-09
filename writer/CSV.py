@@ -7,7 +7,7 @@ from writer.IWriter import IWriter
 
 class CSV(IWriter):
     """
-        CSV file class. This class generates the CSV file for attaching a CSV file to the email.
+        This class generates the CSV file to attaching to the email.
     """
 
     def generate(self, filename: str = 'Data'):
@@ -17,20 +17,24 @@ class CSV(IWriter):
             Args:
                 filename: File name to be generated. Default: Data
 
-
             Returns:
                 None
+            
+            Raises:
+                TypeError: if `filename` is not instance of `str` raises `TypeError`.
+                ValueError: if filename is empty and include '/' then raises ValueError.
         """
 
         if type(filename) != str:
-            raise TypeError(f'filename must be string not {type(filename).__name__}')
+            raise TypeError(f'filename must be string, not {type(filename).__name__}')
         
         filename = filename.strip()
 
         if filename == '':
-            raise TypeError('filename is not empty.')
+            raise ValueError('filename must not empty')
+
         if filename.find('/') != -1:
-            raise TypeError('filename is not include `/` character ')
+            raise ValueError('filename must not include `/` character.')
 
         self.df.to_csv(f'{filename}.csv', index=False)
 

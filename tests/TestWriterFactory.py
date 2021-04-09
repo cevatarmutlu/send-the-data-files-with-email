@@ -12,12 +12,6 @@ class TestWriterFactory(unittest.TestCase):
 
         print('\n**Start WriterFactory getWriter() test**\n')
 
-        #### Valid ####
-        self.assertIsInstance(
-            WriterFactory.getWriter(FileTypeEnum.Excel),
-            IWriter
-        )
-
         #### Invalid ####
         with self.assertRaises(TypeError):
             WriterFactory.getWriter(fileType=5)
@@ -25,5 +19,11 @@ class TestWriterFactory(unittest.TestCase):
             WriterFactory.getWriter(fileType='Hello World!')
             WriterFactory.getWriter(fileType='Word')
 
+
+        #### Valid ####
+        self.assertIsInstance(
+            WriterFactory.getWriter(FileTypeEnum.Excel),
+            IWriter
+        )
         
         print('\n**End WriterFactory getWriter() test**\n')

@@ -12,12 +12,6 @@ class TestDBFactory(unittest.TestCase):
 
         print('\n**Start DBFactory getDB() test**\n')
 
-        #### Valid ####
-        self.assertIsInstance(
-            DBFactory.getDB(DBEnum.PostgreSQL),
-            IDB
-        )
-
         #### Invalid ####
         with self.assertRaises(TypeError):
             DBFactory.getDB(dBType=5)
@@ -25,5 +19,11 @@ class TestDBFactory(unittest.TestCase):
             DBFactory.getDB(dBType='Hello World!')
             DBFactory.getDB(dBType='MongoDB')
 
+
+        #### Valid ####
+        self.assertIsInstance(
+            DBFactory.getDB(DBEnum.PostgreSQL),
+            IDB
+        )
         
         print('\n**End DBFactory getDB() test**\n')

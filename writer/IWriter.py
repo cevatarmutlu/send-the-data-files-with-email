@@ -6,7 +6,7 @@ from pandas import DataFrame
 
 class IWriter:
     """
-        Interface of file types
+        Abstract class of file types.
     """
 
     def setDF(self, df: DataFrame):
@@ -14,14 +14,18 @@ class IWriter:
             Sets the data that will write.
 
             Args:
-                df: DataFrame object to write.
+                df: `DataFrame` object.
             
             Returns:
-                self: The class instance
+                self: The class instance.
+            
+            Raises:
+                TypeError: if `df` is not instance of `pandas.DataFrame` raises `TypeError`.
         """
 
         if not isinstance(df, DataFrame):
-            raise TypeError('df is not pandas.DataFrame')
+            raise TypeError(f'df must be pandas.DataFrame, , not {type(filename).__name__}')
+            
 
         self.df = df
 
@@ -29,14 +33,4 @@ class IWriter:
     
     @abstractmethod
     def generate(self, filename: str):
-        """
-            Generate the file.
-
-            Args:
-                filename: File name to be generated.
-
-            Returns:
-                None
-        """
-        
         pass

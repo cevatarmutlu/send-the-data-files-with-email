@@ -29,7 +29,7 @@ class WriterFactory:
         """
 
         if not isinstance(fileType, FileTypeEnum):
-            raise TypeError('fileType must be FileTypeEnum.')
+            raise TypeError(f'fileType must be FileTypeEnum, not {type(filename).__name__}')
                 
 
         if (fileType == FileTypeEnum.Excel):

@@ -28,14 +28,20 @@ class TestCSV(unittest.TestCase):
 
         print('\n**Start IWriter generate() test**\n')
 
+        #### Invalid ####
         with self.assertRaises(TypeError):
-            TestCSV.csv.generate('')
+            
             TestCSV.csv.generate(filename=5)
             TestCSV.csv.generate(filename=[1, 2, 3, 4])
             TestCSV.csv.generate(filename=pandas.DataFrame([1, 2, 3]))
+
+        with self.assertRaises(ValueError):
+            TestCSV.csv.generate('')
             TestCSV.csv.generate(filename='/@^+%')
             TestCSV.csv.generate(filename='     ')
 
+
+        #### Valid ####
         self.assertEqual(TestCSV.csv.generate(filename='Deneme'), None)
         self.assertEqual(TestCSV.csv.generate(), None)
         self.assertEqual(TestCSV.csv.generate(filename='den1     '), None)
