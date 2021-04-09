@@ -22,7 +22,7 @@ if __name__ == "__main__":
         mail_service = MailEnum.Hotmail
         auth = {
             'user': 'cevat1803_korkusuz@hotmail.com', 
-            'password': '11411935'
+            'password': ''
         }
         mailTo = 'cevatarmutlu@outlook.com'
         mailSubject = 'Merhaba'
@@ -35,17 +35,17 @@ if __name__ == "__main__":
         df = db.fetch(data_query)
         db.disconnect()
 
-        # WriterFactory.getWriter(attach_file_type)\
-        #     .setDF(df)\
-        #     .generate(attach_file_name)
+        WriterFactory.getWriter(attach_file_type)\
+            .setDF(df)\
+            .generate(attach_file_name)
 
-        # Mail() \
-        #         .setServise(MailEnum.Hotmail) \
-        #         .setAuthentication(**auth) \
-        #         .setTo(mailTo) \
-        #         .setMessage(subject=mailSubject, message=mailMessage) \
-        #         .attach(file_name=attach_file_name, file_type=attach_file_type) \
-        #         .send()
+        Mail() \
+                .setServise(MailEnum.Hotmail) \
+                .setAuthentication(**auth) \
+                .setTo(mailTo) \
+                .setMessage(subject=mailSubject, message=mailMessage) \
+                .attach(file_name=attach_file_name, file_type=attach_file_type) \
+                .send()
     except TypeError as e:
         print('Error: ', e)
     except pandas.io.sql.DatabaseError as e:

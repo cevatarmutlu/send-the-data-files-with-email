@@ -25,9 +25,7 @@ class DBFactory:
             
             Raises:
                 TypeError: if `dbType` is not instance of `DBEnum` raises `TypeError`.
-            
-
-                    
+                     
         """
 
         if not isinstance(dbType, DBEnum):
@@ -38,4 +36,3 @@ class DBFactory:
             return PostgreSQL()
         elif (dbType == DBEnum.MySQL):
             return MySQL()
-

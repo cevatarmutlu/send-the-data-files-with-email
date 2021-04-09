@@ -5,6 +5,7 @@ import unittest
 from DBFactory import DBFactory
 from db.DBEnum import DBEnum
 from db.IDB import IDB
+
 class TestDBFactory(unittest.TestCase):
 
     def test1_getDB(self):
@@ -26,4 +27,3 @@ class TestDBFactory(unittest.TestCase):
 
         
         print('\n**End DBFactory getDB() test**\n')
-
