@@ -13,10 +13,10 @@ if __name__ == "__main__":
 
     try:
         #### Assign this variables ####
-        db_type = DBEnum.MySQL
+        db_type = DBEnum.PostgreSQL
         data_query = ''
 
-        attach_file_name = ''
+        # attach_file_name = ''
         attach_file_type = FileTypeEnum.Excel
         
         mail_service = MailEnum.Hotmail
