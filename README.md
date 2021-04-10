@@ -1,6 +1,6 @@
 # Email ile veri gönderme.
  
- Bu proje bir veritabanı sorgusu ile elde edilen verilerin bir dosya formatına(örn. Excel) çevrilip mail atılmasını sağlar. Bu projeye çok az mail servisini ve veritabanını destekler. Daha fazla bilgi için [katkıda bulunmak için](#katkıda-bulunmak-için) kısmını okuyun.
+ Bu proje bir veritabanı sorgusu ile elde edilen verilerin bir dosya formatına(örn. Excel) çevrilip mail atılmasını sağlar. Bu projeye 1 tane mail servisi ve 1 tane veritabanını destekler. Daha fazla bilgi için [katkıda bulunmak için](#katkıda-bulunmak-için) kısmını okuyun.
 
 # Motivasyon
 
