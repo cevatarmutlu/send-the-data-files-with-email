@@ -4,7 +4,7 @@
 
 This project provides the data obtained with a database query to be converted into a file format (eg Excel) and sent by the email. 
 
-This project supports 1 SMTP connection and 1 database. For more information read [Contribute] (#contribute).
+This project supports 1 SMTP connection and 1 database. For more information read [Contribute](#contribute).
 
 # Motivation
 
