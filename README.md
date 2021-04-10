@@ -18,10 +18,13 @@
 
  ```python
 
-    db_type = DBEnum.PostgreSQL # Kullandığınız veritabanı. Veritabanı ile ilgili giriş bilgileri db klasörünün  altındaki gerekli veritabanı dosyanın içinde hazır olarak gelmektedir. Elle değiştirmeniz gerekir. Parametre olarak verilmez.
+    db_type = DBEnum.PostgreSQL # Kullandığınız veritabanı. Veritabanı ile ilgili 
+    # giriş bilgileri db klasörünün  altındaki gerekli veritabanı dosyanın içinde 
+    # hazır olarak gelmektedir. Elle değiştirmeniz gerekir. Parametre olarak verilmez.
     data_query = 'SELECT * FROM temp' # Kullanacağınız sorgu.
 
-    # attach_file_name = '' # Maile eklemek istediğiniz dosyanın adı. Default olarak Data ismiyle eklenir. Farklı bir isim istiyorsanız yorum satırını kaldırın.
+    # attach_file_name = '' # Maile eklemek istediğiniz dosyanın adı. 
+    # Default olarak Data ismiyle eklenir. Farklı bir isim istiyorsanız yorum satırını kaldırın.
     attach_file_type = FileTypeEnum.Excel # Maile ekleyeceğiniz dosyanın Tipi.
 
     mail_service = MailEnum.Hotmail # Kendinizin kullandığı mail servisi
