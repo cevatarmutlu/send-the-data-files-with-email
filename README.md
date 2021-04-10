@@ -56,10 +56,22 @@ Oluşturacağınız sınıf 3 fonksiyondan oluşmalıdır. Bunlar; `connect`, `f
 Son olarakta eklediğiniz veritabanını `db` klasörünün altındaki DBEnum dosyasına eklemeyi unutmayın.
 
 ## Mail eklemek için
-Bu projeye mail servisi eklemek istiyorsanız `Mail` klasörünün altındaki `MailEnum` dosyanına eklemeniz gerekir. Bu servisin, `STMP` bağlantı bilgilerini bir `dict` şeklinde eklemeniz gerekir. `smtplib` modülünün `SMTP` sınıfının kabul ettiği bütün parametreleri yazabilirsiniz.
+Bu projenin desteklediği mail servisi sadece `Hotmail`' dir.
+
+Bu projeye mail servisi eklemek istiyorsanız; 
+
+`Mail` klasörünün altındaki `MailEnum` dosyanına eklemeniz gerekir. 
+
+Eklemek istediğiniz servisin, `STMP` bağlantı bilgilerini bir `dict` şeklinde eklemeniz gerekir. 
+
+`smtplib` modülünün `SMTP` sınıfının kabul ettiği bütün parametreleri yazabilirsiniz.
 
 ## Dosya Tipi eklemek için
-Bu projeye dosya tipi eklemek istiyorsanız `writer` klasörü altına eklemek istediğiniz dosya tipi adı ile başlayan ve `IWriter` sınıfını kalıtım alan bir sınıf oluşturarak yapabilirsiniz. 
+Bu projenin desteklediği dosya tipleri `CSV` ve `Excel` dir.
+
+Bu projeye dosya tipi eklemek istiyorsanız; 
+
+`writer` klasörü altına eklemek istediğiniz dosya tipi adı ile başlayan ve `IWriter` sınıfını kalıtım alan bir sınıf oluşturarak yapabilirsiniz. 
 
 Oluşturacağınız sınıf tek fonksiyondan oluşmalı: `generate`
 
