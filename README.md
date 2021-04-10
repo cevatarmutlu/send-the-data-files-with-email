@@ -79,8 +79,6 @@ Oluşturacağınız sınıf tek fonksiyondan oluşmalı: `generate`
 
 `generate` fonksiyonu eklediğiniz dosya formatında dosya oluşturmaya yarar.
 
-Eklediğiniz veritabanını `db` klasörünün altındaki `DBEnum` dosyasına ekleyin.
+Eklediğiniz veritabanını `writer` klasörünün altındaki `FileTypeEnum` dosyasına ekleyin.
 
-Son olarakta eklediğiniz veritabanını `writer` klasörünün altındaki `FileTypeEnum` dosyasına ekleyin.
-
-Son olarakta root dizinindeki `WriterFactory` dosyasındaki `if` şartına ekleyin.
+Son olarak root dizinindeki `WriterFactory` dosyasındaki `if` şartına ekleyin.
