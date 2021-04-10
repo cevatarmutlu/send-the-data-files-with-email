@@ -1,84 +1,89 @@
-# Email ile veri gönderme.
- 
- Bu proje bir veritabanı sorgusu ile elde edilen verilerin bir dosya formatına(örn. Excel) çevrilip mail atılmasını sağlar. Bu projeye 1 tane mail servisi ve 1 tane veritabanını destekler. Daha fazla bilgi için [katkıda bulunmak için](#katkıda-bulunmak-için) kısmını okuyun.
+# Send the data files with email
 
-# Motivasyon
+This project provides the data obtained with a database query to be converted into a file format (eg Excel) and sent by the email. 
 
- Bu projenin var olma amacı belirli alışkanlıklar kazanmak. Bu anlışkanlıklar; Unittest, docstring, projeye başlanmadan önce planlama yapma ve projeyi belirli adımları takip ederek yapma.
+This project supports 1 SMTP connection and 1 database. For more information read [Contribute] (#contribute).
 
-# Kurulum
- 
- ```
-    sudo apt-get install libpq-dev # psycopg2 modülü için.
+# Motivation
+
+The purpose of this project is to gain certain habits. These habits; Unittest, docstring, planning before starting a project and doing the project by following specific steps.
+
+# Installation
+
+This project has been developed in a debian based linux environment.
+
+```
+    sudo apt-get install libpq-dev # for psycopg2 module
     pip install -r req.txt
- ```
+```
 
-# Nasıl kullanılır
- Projenin root dizinindeki `main.py` dosyanın içindeki `Assign this variables` bölümünü doldurmanız gerekmektedir. Bu bölüm aşağıdaki gibidir;
+# How to use?
 
- ```python
+You need to fill in the `Assign this variables` section in the `main.py` file in the root directory of the project. This section is as follows;
 
-    db_type = DBEnum.PostgreSQL # Kullandığınız veritabanı. Veritabanı ile ilgili 
-    # giriş bilgileri db klasörünün  altındaki gerekli veritabanı dosyanın içinde 
-    # hazır olarak gelmektedir. Elle değiştirmeniz gerekir. Parametre olarak verilmez.
-    data_query = 'SELECT * FROM temp' # Kullanacağınız sorgu.
+```python
 
-    # attach_file_name = '' # Maile eklemek istediğiniz dosyanın adı. 
-    # Default olarak Data ismiyle eklenir. Farklı bir isim istiyorsanız yorum satırını kaldırın.
-    attach_file_type = FileTypeEnum.Excel # Maile ekleyeceğiniz dosyanın Tipi.
+    db_type = DBEnum.PostgreSQL # The database you are using. 
+    # The login information about the database comes ready in 
+    # the required database file under the db folder. You need to change it manually. 
+    # It is not given as a parameter.
+    data_query = 'SELECT * FROM temp' # The query you will use.
 
-    mail_service = MailEnum.Hotmail # Kendinizin kullandığı mail servisi
+    # attach_file_name = '' # The name of the file you want to add to the mail.
+    # It is added by default with the name Data. If you want a different name, remove the comment line.
+    attach_file_type = FileTypeEnum.Excel # Type of file to attach to the mail.
+
+    mail_service = MailEnum.Hotmail # Mail service you use
     auth = {
-        'user': '', # Mail adresiniz
-        'password': '' # Mail şifreniz
+        'user': '', # Mail address
+        'password': '' # Mail password
     }
-    mailTo = '' # Mail göndermek istediğiniz adres.
-    mailSubject = '' # Mailin konusu
-    mailMessage = '' # Mailin mesajı.
+    mailTo = '' # The address you want to send an e-mail to.
+    mailSubject = '' # The subject of the mail
+    mailMessage = '' # The message of the mail
 
- ```
+```
 
-# Katkıda bulunmak için
+# Contribute
 
-## Veritabanı eklemek için
-Bu projenin desteklediği veritabanı sadece `PostgreSQL`' dir. `MySQL` postgres' nin kopyasıdır.
+## Add a database
 
-Bu projeye veritabanı eklemek istiyorsanız; 
+The database supported by this project is only `PostgreSQL`. `MySQL` is a copy of `postgre`.
 
-`db` klasörü altına eklemek istediğiniz veritabanının adı ile başlayan ve `IDB` sınıfını kalıtım olan bir sınıf oluşturarak yapabilirsiniz. 
+Create a file with the name of the database you want to add under the `db` folder. This file inherits `IDB` class.
 
-Oluşturacağınız sınıf 3 fonksiyondan oluşmalıdır. Bunlar; `connect`, `fetch`, `disconnect`. 
+The class you will create must consist of 3 functions. These; `connect`,` fetch`, `disconnect`.
 
-`connect` fonksiyonu veritabanı ile bağlantıyı sağlar.<br/>
-`fetch` fonksiyonu belirtilen sorguyu gerçekleştirir ve gelen veriyi DataFrame' e dönüştürür.<br/>
-`disconnect` ise veritabanı bağlantısını kapatır.
+The `connect` function provides the connection with the database. <br/>
+The `fetch` function performs the specified query and converts the obtained data to the DataFrame. <br/>
+`disconnect` closes the database connection.
 
-Eklediğiniz veritabanını `db` klasörünün altındaki `DBEnum` dosyasına ekleyin.
+Add the database you added to the `DBEnum` file under the `db` folder.
 
-Son olarakta root dizinindeki `DBFactory` dosyasındaki `if` şartına ekleyin.
+Finally add it to the `if` condition in the `DBFactory` file in the root directory.
 
-## Mail eklemek için
-Bu projenin desteklediği mail servisi sadece `Hotmail`' dir.
+## Add to SMTP connection
 
-Bu projeye mail servisi eklemek istiyorsanız; 
+In this project there is only `hotmail` connection information.
 
-`Mail` klasörünün altındaki `MailEnum` dosyanına eklemeniz gerekir. 
+If you want to add mail connection to this project;
 
-Eklemek istediğiniz servisin, `STMP` bağlantı bilgilerini bir `dict` şeklinde eklemeniz gerekir. 
+You need to add it to the `MailEnum` file under the `Mail` folder.
 
-`smtplib` modülünün `SMTP` sınıfının kabul ettiği bütün parametreleri yazabilirsiniz.
+You need to add the `STMP` connection information as a `dict`.
 
-## Dosya Tipi eklemek için
-Bu projenin desteklediği dosya tipleri `CSV` ve `Excel` dir.
+## Add to File Type
 
-Bu projeye dosya tipi eklemek istiyorsanız; 
+The file types supported by this project are `CSV` and `Excel`.
 
-`writer` klasörü altına eklemek istediğiniz dosya tipi adı ile başlayan ve `IWriter` sınıfını kalıtım alan bir sınıf oluşturarak yapabilirsiniz. 
+If you want to add a file type to this project;
 
-Oluşturacağınız sınıf tek fonksiyondan oluşmalı: `generate`
+Create a file with the name of the file type you want to add under the `writer` folder. This file inherits `IWriter` class.
 
-`generate` fonksiyonu eklediğiniz dosya formatında dosya oluşturmaya yarar.
+The class you will create must consist of a single function: `generate`
 
-Eklediğiniz veritabanını `writer` klasörünün altındaki `FileTypeEnum` dosyasına ekleyin.
+`generate` function is creating files in the file format you add.
 
-Son olarak root dizinindeki `WriterFactory` dosyasındaki `if` şartına ekleyin.
+Add the file type you added to the `DBWriter` file under the `writer` folder.
+
+Finally add it to the `if` condition in the `DBWriter` file in the root directory.
