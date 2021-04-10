@@ -1,3 +1,5 @@
+> [Türkçe README için](/doc/tr-README.md)
+
 # Send the data files with email
 
 This project provides the data obtained with a database query to be converted into a file format (eg Excel) and sent by the email. 
