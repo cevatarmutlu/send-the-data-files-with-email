@@ -53,7 +53,7 @@ Oluşturacağınız sınıf 3 fonksiyondan oluşmalıdır. Bunlar; `connect`, `f
 `fetch` fonksiyonu belirtilen sorguyu gerçekleştirir ve gelen veriyi DataFrame' e dönüştürür.<br/>
 `disconnect` ise veritabanı bağlantısını kapatır. 
 
-Son olarakta eklediğiniz veritabanını `db` klasörünün altındaki DBEnum dosyasına eklemeyi unutmayın.
+Son olarakta eklediğiniz veritabanını `db` klasörünün altındaki `DBEnum` dosyasına eklemeyi unutmayın.
 
 ## Mail eklemek için
 Bu projenin desteklediği mail servisi sadece `Hotmail`' dir.
@@ -76,3 +76,5 @@ Bu projeye dosya tipi eklemek istiyorsanız;
 Oluşturacağınız sınıf tek fonksiyondan oluşmalı: `generate`
 
 `generate` fonksiyonu eklediğiniz dosya formatında dosya oluşturmaya yarar.
+
+Son olarakta eklediğiniz veritabanını `writer` klasörünün altındaki `FileTypeEnum` dosyasına eklemeyi unutmayın.
