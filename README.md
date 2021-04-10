@@ -32,7 +32,7 @@ You need to fill in the `Assign this variables` section in the `main.py` file in
     data_query = 'SELECT * FROM temp' # The query you will use.
 
     # attach_file_name = '' # The name of the file you want to add to the mail.
-    # It is added by default with the name Data. If you want a different name, remove the comment line.
+    # It is added by default with the name Data. If you want a different name, remove the comment.
     attach_file_type = FileTypeEnum.Excel # Type of file to attach to the mail.
 
     mail_service = MailEnum.Hotmail # Mail service you use
